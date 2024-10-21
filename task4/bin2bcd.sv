@@ -9,6 +9,7 @@
 //   If bottom 4 bits of result  >= 5
 //		add 3 (only once)
 //   Continue shifting x into result until all bit in x have been processed
+//    Double dabble algorithm
 
 
 module bin2bcd (
@@ -27,7 +28,7 @@ module bin2bcd (
       for (i=0; i<8; i=i+1) begin
 			// Check if unit digit >= 5
          if (result[11:8] >= 5)
-            result[11:8] = result[11:8] + 4'd3;
+            result[11:8] = result[11:8] + 4'd3; 
 				
          // Check if ten digit >= 5
          if (result[15:12] >= 5)

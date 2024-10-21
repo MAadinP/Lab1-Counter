@@ -26,7 +26,7 @@ int main(int argc, char **argv, char **env) {
     top->clk = 1;
     top->rst = 1;
     top->ld = 0;
-    top->v = 5;
+    top->v = 10;
 
     // i counts the clock cycles
     for(i=0; i<600; i++) {
@@ -38,23 +38,15 @@ int main(int argc, char **argv, char **env) {
             top->eval();
         }
 
-        /*
+        vbdSetMode(1);
+        top->rst = (vbdValue() == 100); // We are going to reset the counter if the encoder val == 100
+        top->clk = vbdFlag();
+
         vbdHex(4, (int(top->count) >> 16) & 0xF);
         vbdHex(3, (int(top->count) >> 8) & 0xF);
         vbdHex(2, (int(top->count) >> 4) & 0xF);
-        vbdHex(1, int(top->count) >> 16 & 0xF);
-        OR OTHERWISE
-        */ 
-
-        vbdPlot(int(top->count), 0, 255);
-
+        vbdHex(1, int(top->count) & 0xF);
         vbdCycle(i+1);
-
-        top->rst = (i<2);
-        
-        vbdSetMode(1);
-        top->ld = vbdFlag();
-        // top->en = (i>4);
 
         if(Verilated::gotFinish()) exit(0);
 
