@@ -1,4 +1,4 @@
-#include "Vcounter.h"
+#include "Vtop.h"
 #include "verilated.h"
 #include "verilated_vcd_c.h"
 #include "vbuddy.cpp"
@@ -10,22 +10,22 @@ int main(int argc, char **argv, char **env) {
     Verilated::commandArgs(argc, argv);
     
     //init top Verilog instanc
-    Vcounter* top = new Vcounter;
+    Vtop* top = new Vtop;
 
     // init trace dump -> turns on signal tracing and to dump it to counter.vcd
     Verilated::traceEverOn(true);
     VerilatedVcdC* tfp = new VerilatedVcdC;
     top->trace(tfp, 99);
-    tfp->open("counter.vcd");
+    tfp->open("top.vcd");
 
     //init Vbuddy
     if (vbdOpen() !=1) return(-1);
-    vbdHeader("Lab 1: Counter - Task 3 Challenge");
+    vbdHeader("Task 4 - Top");
 
     // init simulation inputs
     top->clk = 1;
+    top->en = 1;
     top->rst = 1;
-    top->ld = 0;
     top->v = vbdValue();
 
     // i counts the clock cycles
@@ -38,25 +38,17 @@ int main(int argc, char **argv, char **env) {
             top->eval();
         }
 
-        /*
         vbdHex(4, (int(top->count) >> 16) & 0xF);
         vbdHex(3, (int(top->count) >> 8) & 0xF);
         vbdHex(2, (int(top->count) >> 4) & 0xF);
-        vbdHex(1, int(top->count) >> 16 & 0xF);
-        ^ FOR HEX NUMBERS 7 SEGMENT
-        */ 
-
-        // FOR STRAIGHT LINE GRAPH PLOT
-        vbdPlot(int(top->count), 0, 255); 
+        vbdHex(1, int(top->count) & 0xF);
 
         vbdCycle(i+1);
 
-        top->v = vbdValue();
         top->rst = (i<2);
         
         vbdSetMode(1); // Put Vbuddy button to be armed mode
-        top->ld = vbdFlag();
-        // top->en = (i>4);
+        top->en = vbdFlag();
 
         if(Verilated::gotFinish()) exit(0);
 
