@@ -20,7 +20,7 @@ int main(int argc, char **argv, char **env) {
 
     //init Vbuddy
     if (vbdOpen() !=1) return(-1);
-    vbdHeader("Lab 1: Counter");
+    vbdHeader("Lab 1: Task 2 Challenge");
 
     // init simulation inputs -> intial signal values (only the top level signals are visible)
     top->clk = 1;
@@ -29,7 +29,7 @@ int main(int argc, char **argv, char **env) {
 
     // running many simulations
     // i counts the clock cycles
-    for(i=0; i<300; i++) {
+    for(i=0; i<200; i++) {
         
         // Dump variables into vcd file and flop the clock signal
         // This also outputs the trace for each half of the clocks cycle 

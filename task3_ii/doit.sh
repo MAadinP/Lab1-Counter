@@ -4,6 +4,8 @@
 rm -rf obj/dir
 rm -f counter.vcd
 
+~/Documents/iac/lab0-devtools/tools/attach_usb.sh
+
 # Run verilator to make verilog into C++ and also include the testbench
 verilator -Wall -cc --trace counter.sv --exe counter_tb.cpp
 
@@ -14,4 +16,4 @@ make -j -C obj_dir/ -f Vcounter.mk Vcounter
 obj_dir/Vcounter
 
 # Gtkwave bit as well
-# gtkwave counter.vcd
+gtkwave counter.vcd

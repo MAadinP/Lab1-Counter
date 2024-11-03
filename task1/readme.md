@@ -97,3 +97,20 @@ Run gtkwave with the following command:
 1. Modify the testbench so that you stop counting for 3 cycles once the counter reaches 0x9, and then resume counting. You may also need to change the stimulus for rst:
 
 2. The current counter has a synchronous reset. To implement asynchronous reset, you can change line 11 of counter.sv to detect change in rst signal. (See notes.)
+
+
+**EVIDENCE**
+
+Showing Task 1 Working:
+
+Only used GTKWave to visualise the output here:
+
+![wavesim_task1](image-3.png)
+
+- Here you can see that the reset is high for i < 2. This means that after three up/downs of top->clk (done in the for loop)
+- i counts the num of clock cylces so i < 2 means after 3 clk cycles the reset will be low
+s
+
+![whatonecycleis](image-4.png)
+
+- i = 0 and while in this loop for this i = 0, then the clk finishes one cycle. So i is always one behind the clock cycle

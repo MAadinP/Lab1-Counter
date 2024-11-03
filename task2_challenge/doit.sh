@@ -14,4 +14,4 @@ make -j -C obj_dir/ -f Vcounter.mk Vcounter
 obj_dir/Vcounter
 
 # Gtkwave bit as well
-# gtkwave counter.vcd
+gtkwave counter.vcd

@@ -1,5 +1,4 @@
 #include "Vcounter.h"
-#include "Vcounter_async_rst.h"
 #include "verilated.h"
 #include "verilated_vcd_c.h"
 
@@ -10,7 +9,7 @@ int main(int argc, char **argv, char **env) {
     Verilated::commandArgs(argc, argv);
     
     //init top Verilog instanc
-    Vcounter_async_rst* top = new Vcounter_async_rst;
+    Vcounter* top = new Vcounter;
 
     // init trace dump -> turns on signal tracing and to dump it to counter.vcd
     Verilated::traceEverOn(true);
@@ -39,7 +38,7 @@ int main(int argc, char **argv, char **env) {
 
         // change rst and en during the sim
         top->rst = (i<2) | (i == 15);
-        top->en = (i>4);
+        top->en = (i>=40);
 
         if(Verilated::gotFinish()) exit(0);
 

@@ -206,7 +206,7 @@ For Windows users, run the following script:
 ~/Documents/iac/lab0-devtools/tools/attach_usb.sh
 ```
 This uses usbipd to search for the USB port that Vbuddy is connected to and share it with WSL. The script must be run every time Vbuddy is reconnected to the computer. You may wish to include this in your `doit.sh` script so that it runs automatically every time you run your code.
-
+c
 Next enter the following command to find the name of your device:
 ```bash
 ls /dev/ttyU*

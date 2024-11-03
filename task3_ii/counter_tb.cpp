@@ -20,16 +20,14 @@ int main(int argc, char **argv, char **env) {
 
     //init Vbuddy
     if (vbdOpen() != 1) return(-1);
-    vbdHeader("Lab 1: Counter - Task 3 Challenge Step 2");
+    vbdHeader("Lab 1 Task 3 II");
 
     // init simulation inputs
     top->clk = 1;
     top->rst = 1;
-    top->ld = 0;
-    top->v = 10;
 
     // i counts the clock cycles
-    for(i=0; i<600; i++) {
+    for(i=0; i<50; i++) {
     
         for(j=0; j<2; j++) {
             //clock is in ps

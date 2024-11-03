@@ -17,4 +17,4 @@ make -j -C obj_dir/ -f Vtop.mk Vtop
 obj_dir/Vtop
 
 # Gtkwave bit as well
-# gtkwave counter.vcd
+gtkwave counter.vcd
